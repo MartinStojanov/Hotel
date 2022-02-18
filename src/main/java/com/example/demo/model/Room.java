@@ -7,7 +7,7 @@ import javax.persistence.*;
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int number;
+    private Integer number;
     private boolean free;
     @Enumerated(EnumType.STRING)
     private RoomType roomType;

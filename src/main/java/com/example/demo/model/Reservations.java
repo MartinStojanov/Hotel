@@ -14,4 +14,14 @@ public class Reservations {
     private Room room;
     private LocalDate from;
     private LocalDate to;
+
+    public Reservations() {
+    }
+
+    public Reservations(Guests guests, Room room, LocalDate from, LocalDate to) {
+        this.guests = guests;
+        this.room = room;
+        this.from = from;
+        this.to = to;
+    }
 }

@@ -15,4 +15,15 @@ public class Product {
     private int stock;
     private String supplierName;
     private String supplierNumber;
+
+    public Product() {
+    }
+
+    public Product(String productName, int stockLimit, int stock, String supplierName, String supplierNumber) {
+        this.productName = productName;
+        this.stockLimit = stockLimit;
+        this.stock = stock;
+        this.supplierName = supplierName;
+        this.supplierNumber = supplierNumber;
+    }
 }
