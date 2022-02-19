@@ -1,11 +1,8 @@
 package com.example.demo.service;
 
-import com.example.demo.model.Guests;
-import com.example.demo.model.Reservations;
 import com.example.demo.model.Room;
 import com.example.demo.model.RoomType;
 
-import java.time.LocalDate;
 import java.util.List;
 
 public interface RoomService {

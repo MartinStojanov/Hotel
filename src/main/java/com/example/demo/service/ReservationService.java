@@ -1,7 +1,6 @@
 package com.example.demo.service;
 
 import com.example.demo.model.Guests;
-import com.example.demo.model.Product;
 import com.example.demo.model.Reservations;
 import com.example.demo.model.Room;
 

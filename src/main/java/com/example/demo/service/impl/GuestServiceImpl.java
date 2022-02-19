@@ -24,7 +24,7 @@ public class GuestServiceImpl implements GuestService {
 
     @Override
     public Guests create(String name, String surname, String EMBG, String email, LocalDate from, LocalDate to, boolean breakfast, AccommodationType type) {
-        Guests guests = new Guests( name,  surname,  EMBG,  email,  from,  to,  breakfast,  type);
+        Guests guests = new Guests( name,  surname,  EMBG,  email,   breakfast,  type);
         return this.guestRepo.save(guests);
     }
 
@@ -41,15 +41,16 @@ public class GuestServiceImpl implements GuestService {
         return guests;
     }
 
+
+
     @Override
-    public Guests update(Long id, String name, String surname, String EMBG, String email, LocalDate from, LocalDate to, boolean breakfast, AccommodationType type) {
+    public Guests update(Long id, String name, String surname, String EMBG, String email,  boolean breakfast, AccommodationType type) {
         Guests guests = findById(id);
         guests.setName(name);
         guests.setSurname(surname);
         guests.setEmail(email);
         guests.setEMBG(EMBG);
-        guests.setFrom(from);
-        guests.setTo(to);
+
         guests.setBreakfast(breakfast);
         guests.setType(type);
         return this.guestRepo.save(guests);

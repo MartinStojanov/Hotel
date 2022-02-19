@@ -44,8 +44,8 @@ public class ReservationServiceImpl implements ReservationService {
         Reservations reservations = findById(id);
         reservations.setGuests(guests);
         reservations.setRoom(room);
-        reservations.setTo(to);
-        reservations.setFrom(from);
+        reservations.setToo(to);
+        reservations.setFromm(from);
         return this.reservationRepo.save(reservations);
     }
 }
