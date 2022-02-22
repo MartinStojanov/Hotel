@@ -23,7 +23,7 @@ public class GuestServiceImpl implements GuestService {
     }
 
     @Override
-    public Guests create(String name, String surname, String EMBG, String email, LocalDate from, LocalDate to, boolean breakfast, AccommodationType type) {
+    public Guests create(String name, String surname, String EMBG, String email, boolean breakfast, AccommodationType type) {
         Guests guests = new Guests( name,  surname,  EMBG,  email,   breakfast,  type);
         return this.guestRepo.save(guests);
     }

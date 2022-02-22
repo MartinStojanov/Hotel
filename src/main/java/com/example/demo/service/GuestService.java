@@ -12,8 +12,7 @@ public interface GuestService {
     List<Guests> listAll();
 
     Guests create(String name, String surname, String EMBG,
-                  String email, LocalDate from,
-                  LocalDate to, boolean breakfast,
+                  String email, boolean breakfast,
                   AccommodationType type);
 
     Guests delete(Long id);

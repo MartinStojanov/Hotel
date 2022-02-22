@@ -5,10 +5,12 @@ import com.example.demo.model.Room;
 import com.example.demo.model.RoomType;
 import com.example.demo.repository.RoomRepo;
 import com.example.demo.service.RoomService;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
 
+@Service
 public class RoomServiceImpl implements RoomService {
     private final RoomRepo roomRepo;
 
