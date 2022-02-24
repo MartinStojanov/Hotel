@@ -27,7 +27,7 @@ public class EmployeesController {
 
         List<Employee> employeeList = this.employeeService.listAll();
         model.addAttribute("employees",employeeList);
-        return "listEmployees";
+        return "listEmployees2";
     }
 
 
@@ -46,24 +46,10 @@ public class EmployeesController {
     @GetMapping("/employee/{id}/edit")
     public String showEdit(@PathVariable Long id, Model model) {
         Employee emp = this.employeeService.findById(id);
-        List<Role> roles = new ArrayList<>();
-        Role a = Role.chef;
-        Role b = Role.cleaner;
-        Role c = Role.director;
-        Role d = Role.reception;
-        Role e = Role.hostess;
-        Role f = Role.manager;
-        Role g = Role.waiter;
-        roles.add(a);
-        roles.add(b);
-        roles.add(c);
-        roles.add(d);
-        roles.add(e);
-        roles.add(g);
-        roles.add(f);
+
 
         model.addAttribute("emp",emp);
-        model.addAttribute("roles",roles);
+        model.addAttribute("roles",Role.values());
 
         return "editEmployee";
     }
@@ -74,9 +60,10 @@ public class EmployeesController {
                          @RequestParam String surname,
                          @RequestParam String EMBG,
                          @RequestParam String email,
-                         @RequestParam float salary,
+                         @RequestParam String salary,
                          @RequestParam Role position) {
-        this.employeeService.update(id, name, surname, EMBG, email,salary,position);
+        float sal = Float.parseFloat(salary);
+        this.employeeService.update(id, name, surname, EMBG, email,sal,position);
         return "redirect:/employees";
     }
 

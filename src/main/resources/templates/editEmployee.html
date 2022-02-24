@@ -23,16 +23,16 @@
                     <label for="firstname"></label>
                     <input type="text"
                            id="firstname"
-                           name="firstname"
+                           name="name"
                            th:value="${emp?.name}"
                            required>
                 </div>
                 <h2>LAST NAME</h2>
                 <div>
-                    <label for="lastname"></label>
+                    <label for="surname"></label>
                     <input type="text"
-                           id="lastname"
-                           name="lastname"
+                           id="surname"
+                           name="surname"
                            th:value="${emp?.surname}"
                            required>
                 </div>
@@ -41,7 +41,7 @@
                     <label for="embg"></label>
                     <input type="text"
                            id="embg"
-                           name="embg"
+                           name="EMBG"
                            th:value="${emp?.EMBG}"
                            required>
                 </div>
@@ -57,7 +57,7 @@
                 <h2>SALARY</h2>
                 <div>
                     <label for="salary"></label>
-                    <input type="text"
+                    <input type="number"
                            id="salary"
                            name="salary"
                            th:value="${emp?.salary}"
@@ -65,11 +65,11 @@
                 </div>
                 <h2>POSITION</h2>
                 <div>
-                    <select>
+                    <select name="position">
                     <option th:each="role:${roles}"
                             th:selected="${emp!=null ? emp.getPosition().toString().equals(role.toString()):null}"
                             th:value="${role}"
-                            th:text="${role.toString()}"> [type_name]
+                            th:text="${role.name()}"> [type_name]
                     </option>
                     </select>
                 </div>
