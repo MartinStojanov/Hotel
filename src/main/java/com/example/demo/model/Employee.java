@@ -16,7 +16,7 @@ public class Employee {
     private float salary;
     @Enumerated(EnumType.STRING)
     private Role position;
-
+    // so komentar !!!
     public Employee() {
     }
 
