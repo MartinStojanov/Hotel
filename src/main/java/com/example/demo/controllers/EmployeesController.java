@@ -32,7 +32,7 @@ public class EmployeesController {
 
 
 
-    @PostMapping("/employees/add")
+    @PostMapping("/employee")
     public String addEmployee(@RequestParam String name,
                               @RequestParam String surname,
                               @RequestParam String EMBG,
@@ -40,7 +40,13 @@ public class EmployeesController {
                               @RequestParam float salary,
                               @RequestParam Role position){
         this.employeeService.create(name,surname,EMBG,email,salary,position);
-        return "editEmployee";//da se smeni Strana so nov vraboten
+        return "redirect:/employees";//da se smeni Strana so nov vraboten
+    }
+
+    @GetMapping("/employee/add")
+    public String showAdd(Model model) {
+        model.addAttribute("roles", Role.values());
+        return "editEmployee";
     }
 
     @GetMapping("/employee/{id}/edit")

@@ -31,12 +31,16 @@
         max-width: 100%;
         overflow-x: hidden;
     }
+    #add-button{
+        text-align: center;
+    }
 </style>
 </head>
 
 <body>
 
 <table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+
     <thead>
     <tr>
         <th>First name</th>
@@ -73,7 +77,12 @@
     </tr>
     </th:block>
     </tbody>
+
 </table>
+<form id="add-button" th:action="@{'/employee/add'}" th:method="GET">
+    <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
+</form>
+
 </body>
 <script type="text/javascript">
     $(document).ready(function() {
