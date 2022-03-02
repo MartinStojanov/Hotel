@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.1/css/fixedHeader.bootstrap.min.css">
+    <link rel="stylesheet" href="hxttps://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.4/js/dataTables.bootstrap.min.js"></script>
+    <script src="https://cdn.datatables.net/fixedheader/3.2.1/js/dataTables.fixedHeader.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <style>
+        #leftt{
+
+            display: inline-block;
+            position: absolute;
+            margin-left: 60px;
+        }
+        #lef{
+
+            display: inline-block;
+            position: absolute;
+        }
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        #add-button{
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+
+<table id="example" class="table table-striped table-bordered nowrap" style="width:100%">
+
+    <thead>
+    <tr>
+        <th>Product Name</th>
+        <th>Stock Limit</th>
+        <th>In Stock</th>
+        <th>Supplier Name</th>
+        <th>Supplier Number</th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <th:block th:each="pro : ${productList}">
+        <tr>
+            <td th:text="${pro.productName}"></td>
+            <td th:text="${pro.stockLimit}"></td>
+            <td th:text="${pro.stock}"></td>
+            <td th:text="${pro.supplierName}"></td>
+            <td th:text="${pro.supplierNumber}"></td>
+            <td>
+                <form th:action="@{'/product/{id}/edit/' (id=${pro.getId()})}" th:method="GET">
+                    <button  type="submit" class="delete-item btn btn-primary" id="lef"><i class="bi bi-pen"></i></button>
+                </form>
+                <form th:action="@{'/product/{id}/delete' (id=${pro.getId()})}" th:method="POST">
+                    <button  type="submit" class="delete-item btn btn-danger " id="leftt"><i class="bi bi-trash"></i></button>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+    </tbody>
+
+</table>
+<form id="add-button" th:action="@{'/product/add'}" th:method="GET">
+    <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
+</form>
+
+</body>
+<script type="text/javascript">
+    $(document).ready(function() {
+        var table = $('#example').DataTable( {
+            responsive: false
+        } );
+
+        new $.fn.dataTable.FixedHeader( table );
+    } );
+</script>
+</html>
