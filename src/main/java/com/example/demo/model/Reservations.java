@@ -1,6 +1,9 @@
 package com.example.demo.model;
 
 import lombok.Data;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
+import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -10,6 +13,7 @@ public class Reservations {
         @Id
         @GeneratedValue(strategy = GenerationType.IDENTITY)
         private Long id;
+        @OnDelete(action = OnDeleteAction.CASCADE)
         @OneToOne
         private Guests guests;
         @OneToOne

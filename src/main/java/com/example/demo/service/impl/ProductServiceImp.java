@@ -29,6 +29,7 @@ public class ProductServiceImp implements ProductService {
     @Override
     public Product delete(Long id) {
         Product product = this.productRepo.findById(id).orElseThrow(RuntimeException::new);
+        this.productRepo.delete(product);
         return product;
     }
 

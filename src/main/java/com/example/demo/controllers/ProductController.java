@@ -1,6 +1,8 @@
 package com.example.demo.controllers;
 
+import com.example.demo.model.Employee;
 import com.example.demo.model.Product;
+import com.example.demo.model.Role;
 import com.example.demo.service.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -19,7 +21,7 @@ public class ProductController {
         this.productService = productService;
     }
 
-    @GetMapping("/listProducts")
+    @GetMapping("/products")
     public String listProducts(Model model){
 
         List<Product> productList = this.productService.listAll();
@@ -27,21 +29,26 @@ public class ProductController {
         return "listProducts";
     }
 
-    //eden Get Mapping so input forma za addReservation
-    //TODO:
-    //@GetMapping
+    @GetMapping("/product/add")
+    public String showAdd() {
+        return "editProduct";
+    }
 
-
-    @PostMapping("/addProduct")
+    @PostMapping("/product")
     public String addProduct(@RequestParam String productName,
                              @RequestParam int stockLimit,
                              @RequestParam int stock,
                              @RequestParam String supplierName,
                              @RequestParam String supplierNumber){
         this.productService.create(productName,stockLimit,stock,supplierName,supplierNumber);
-        return "redirect:/listProducts";//da se smeni Strana so nov gost
+        return "redirect:/products";
     }
-
+    @GetMapping("/product/{id}/edit")
+    public String showEdit(@PathVariable Long id, Model model) {
+        Product pro = this.productService.findById(id);
+        model.addAttribute("pro",pro);
+        return "editProduct";
+    }
     @PostMapping("/product/{id}")
     public String editProduct(@PathVariable Long id,
                               @RequestParam String productName,

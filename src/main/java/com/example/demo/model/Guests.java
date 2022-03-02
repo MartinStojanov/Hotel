@@ -17,7 +17,6 @@ public class Guests {
     private String surname;
     private String EMBG;
     private String email;
-
     private boolean breakfast;
     @Enumerated(EnumType.STRING)
     private AccommodationType type;
@@ -31,7 +30,6 @@ public class Guests {
         this.surname = surname;
         this.EMBG = EMBG;
         this.email = email;
-
         this.breakfast = breakfast;
         this.type = type;
     }

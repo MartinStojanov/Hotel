@@ -17,17 +17,17 @@
 
         <div class="rightbox">
             <div class="profile">
-                <h1 th:align="center">Edit Employee</h1>
-                <h2 >FIRST NAME</h2>
+                <h1 th:align="center">Edit/Add Employee</h1>
+                <h2 >First Name</h2>
                 <div>
-                    <label for="firstname"></label>
+                    <label for="name"></label>
                     <input type="text"
-                           id="firstname"
+                           id="name"
                            name="name"
                            th:value="${emp?.name}"
                            required>
                 </div>
-                <h2>LAST NAME</h2>
+                <h2>Last Name</h2>
                 <div>
                     <label for="surname"></label>
                     <input type="text"
@@ -45,7 +45,7 @@
                            th:value="${emp?.EMBG}"
                            required>
                 </div>
-                <h2>E-MAIL</h2>
+                <h2>E-mail</h2>
                 <div >
                     <label for="email"></label>
                     <input type="text"
@@ -54,7 +54,7 @@
                            th:value="${emp?.email}"
                            required>
                 </div>
-                <h2>SALARY</h2>
+                <h2>Salary</h2>
                 <div>
                     <label for="salary"></label>
                     <input type="number"
@@ -63,7 +63,7 @@
                            th:value="${emp?.salary}"
                            required>
                 </div>
-                <h2>POSITION</h2>
+                <h2>Position</h2>
                 <div>
                     <select name="position">
                     <option th:each="role:${roles}"
@@ -74,7 +74,7 @@
                     </select>
                 </div>
                 <button id="submit" type="submit">Submit</button>
-                <a id="back" href="/employees" type="button" class="btn btn-primary">Back to news</a>
+                <a id="back" href="/employees" type="button" class="btn btn-primary">Back to employees list</a>
             </div>
 
 
