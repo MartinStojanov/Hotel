@@ -3,12 +3,15 @@ package com.example.demo.controllers;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Role;
 import com.example.demo.service.EmployeeService;
+import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.thymeleaf.templatemode.TemplateMode;
+import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,8 +33,6 @@ public class EmployeesController {
         return "listEmployees2";
     }
 
-
-
     @PostMapping("/employee")
     public String addEmployee(@RequestParam String name,
                               @RequestParam String surname,
@@ -48,6 +49,7 @@ public class EmployeesController {
         model.addAttribute("roles", Role.values());
         return "editEmployee";
     }
+
 
     @GetMapping("/employee/{id}/edit")
     public String showEdit(@PathVariable Long id, Model model) {

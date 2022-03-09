@@ -15,4 +15,6 @@ public interface RoomService {
     Room findById(Long id);
 
     Room update(Long id,Integer number, boolean free, RoomType roomType);
+
+    Long numberOfFreeRooms();
 }

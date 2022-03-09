@@ -11,14 +11,14 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer number;
-    private boolean free;
+    private Boolean free;
     @Enumerated(EnumType.STRING)
     private RoomType roomType;
 
     public Room() {
     }
 
-    public Room(Integer number, boolean free, RoomType roomType) {
+    public Room(Integer number, Boolean free, RoomType roomType) {
         this.number = number;
         this.free = free;
         this.roomType = roomType;

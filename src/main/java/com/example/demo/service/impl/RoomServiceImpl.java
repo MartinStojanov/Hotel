@@ -1,13 +1,11 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.model.Guests;
 import com.example.demo.model.Room;
 import com.example.demo.model.RoomType;
 import com.example.demo.repository.RoomRepo;
 import com.example.demo.service.RoomService;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Service
@@ -50,4 +48,13 @@ public class RoomServiceImpl implements RoomService {
         room.setRoomType(roomType);
         return this.roomRepo.save(room);
     }
+
+    @Override
+    public Long numberOfFreeRooms() {
+        List <Room> rooms = this.listAll();
+        long brojPrazni = 0L;
+        brojPrazni = rooms.stream().filter(room -> room.getFree().equals(true)).count();
+        return brojPrazni;
+    }
+
 }
