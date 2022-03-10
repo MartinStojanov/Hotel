@@ -32,6 +32,8 @@
         overflow-x: hidden;
     }
     #add-button{
+        position: absolute;
+        z-index: 1;
         text-align: center;
     }
 </style>
@@ -79,9 +81,7 @@
     </tbody>
 
 </table>
-<form id="add-button" th:action="@{'/employee/add'}" th:method="GET">
-    <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
-</form>
+
 
 </body>
 <script type="text/javascript">

@@ -16,6 +16,7 @@ public class Reservations {
         @OnDelete(action = OnDeleteAction.CASCADE)
         @OneToOne
         private Guests guests;
+        @OnDelete(action = OnDeleteAction.CASCADE)
         @OneToOne
         private Room room;
         private LocalDate fromm;

@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.1/css/fixedHeader.bootstrap.min.css">
@@ -50,7 +51,8 @@
         <th>Guest E-mail</th>
         <th>Accomodation Type</th>
         <th>Breakfast</th>
-        <th>Price for Accomodation</th>
+        <th>Price</th>
+        <th>Paid</th>
         <th>Action</th>
     </tr>
     </thead>
@@ -65,6 +67,12 @@
             <td th:text="${guest.type}">8422</td>
             <td th:text="${guest.breakfast}">$170,750</td>
             <td th:text="${guest.price}">g.winters@datatables.net</td>
+            <td th:if="${guest.paid == false}"> <form th:action="@{'/guest/{id}/send-email/' (id=${guest.getId()})}" th:method="GET">
+                <button   type="submit" class="delete-item btn btn-warning" title="Send invoice to customer"><i class="bi bi-receipt"></i></button>
+            </form></td>
+            <td th:unless="${guest.paid == false}"><form>
+                <button  type="submit" class="delete-item btn btn-success" disabled>Paid</button>
+            </form></td>
             <td>
                 <form th:action="@{'/guest/{id}/edit/' (id=${guest.getId()})}" th:method="GET">
                     <button  type="submit" class="delete-item btn btn-primary" id="lef"><i class="bi bi-pen"></i></button>
@@ -92,5 +100,6 @@
 
         new $.fn.dataTable.FixedHeader( table );
     } );
+
 </script>
 </html>

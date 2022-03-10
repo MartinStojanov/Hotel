@@ -23,8 +23,8 @@ public class GuestServiceImpl implements GuestService {
     }
 
     @Override
-    public Guests create(String name, String surname, String EMBG, String email, boolean breakfast, AccommodationType type) {
-        Guests guests = new Guests( name,  surname,  EMBG,  email,   breakfast,  type);
+    public Guests create(String name, String surname, String EMBG, String email, boolean breakfast, AccommodationType type, boolean paid) {
+        Guests guests = new Guests( name,  surname,  EMBG,  email,   breakfast,  type, paid);
         return guestRepo.save(guests);
     }
 
@@ -43,13 +43,13 @@ public class GuestServiceImpl implements GuestService {
 
 
     @Override
-    public Guests update(Long id, String name, String surname, String EMBG, String email,  boolean breakfast, AccommodationType type) {
+    public Guests update(Long id, String name, String surname, String EMBG, String email,  boolean breakfast, AccommodationType type, boolean paid) {
         Guests guests = findById(id);
         guests.setName(name);
         guests.setSurname(surname);
         guests.setEmail(email);
         guests.setEMBG(EMBG);
-
+        guests.setPaid(paid);
         guests.setBreakfast(breakfast);
         guests.setType(type);
         return this.guestRepo.save(guests);

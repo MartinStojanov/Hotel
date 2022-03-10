@@ -13,7 +13,7 @@ public interface GuestService {
 
     Guests create(String name, String surname, String EMBG,
                   String email, boolean breakfast,
-                  AccommodationType type);
+                  AccommodationType type,boolean paid);
 
     Guests delete(Long id);
 
@@ -21,5 +21,5 @@ public interface GuestService {
 
     Guests update(Long id,String name, String surname, String EMBG,
                   String email, boolean breakfast,
-                  AccommodationType type);
+                  AccommodationType type, boolean paid);
 }
