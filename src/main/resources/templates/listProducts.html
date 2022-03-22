@@ -18,13 +18,13 @@
     <style>
         #leftt{
 
-            display: inline-block;
+            display: inline;
             position: absolute;
             margin-left: 60px;
         }
         #lef{
 
-            display: inline-block;
+            display: inline;
             position: absolute;
         }
         html, body {
@@ -34,6 +34,23 @@
         #add-button{
             text-align: center;
         }
+
+        .btn-group button {
+            color: white; /* White text */
+            float: left; /* Float the buttons side by side */
+        }
+
+        /* Clear floats (clearfix hack) */
+        .btn-group:after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .btn-group button:not(:last-child) {
+            border-right: none; /* Prevent double borders */
+        }
+
     </style>
 </head>
 
@@ -60,12 +77,16 @@
             <td th:text="${pro.supplierName}"></td>
             <td th:text="${pro.supplierNumber}"></td>
             <td>
+                <div class="btn-group">
                 <form th:action="@{'/product/{id}/edit/' (id=${pro.getId()})}" th:method="GET">
-                    <button  type="submit" class="delete-item btn btn-primary" id="lef"><i class="bi bi-pen"></i></button>
+                    <button  type="submit" class="delete-item btn btn-primary"><i class="bi bi-pen"></i></button>
                 </form>
+                </div>
+                <div class="btn-group">
                 <form th:action="@{'/product/{id}/delete' (id=${pro.getId()})}" th:method="POST">
-                    <button  type="submit" class="delete-item btn btn-danger " id="leftt"><i class="bi bi-trash"></i></button>
+                    <button  type="submit" class="delete-item btn btn-danger "><i class="bi bi-trash"></i></button>
                 </form>
+                </div>
             </td>
         </tr>
     </th:block>

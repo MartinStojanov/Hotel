@@ -47,7 +47,7 @@ public class EmployeesController {
     @GetMapping("/employee/add")
     public String showAdd(Model model) {
         model.addAttribute("roles", Role.values());
-        return "editEmployee";
+        return "addEmployeeProba";
     }
 
 
@@ -59,7 +59,7 @@ public class EmployeesController {
         model.addAttribute("emp",emp);
         model.addAttribute("roles",Role.values());
 
-        return "editEmployee";
+        return "addEmployeeProba";
     }
 
     @PostMapping("/employee/{id}")
