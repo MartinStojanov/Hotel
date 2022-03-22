@@ -2,7 +2,6 @@ package com.example.demo;
 
 import com.example.demo.model.Employee;
 import com.example.demo.model.Role;
-import com.example.demo.service.impl.EmailSenderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
