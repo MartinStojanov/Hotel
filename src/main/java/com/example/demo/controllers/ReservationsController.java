@@ -1,5 +1,6 @@
 package com.example.demo.controllers;
 
+import com.example.demo.model.AccommodationType;
 import com.example.demo.model.Guests;
 import com.example.demo.model.Reservations;
 import com.example.demo.model.Room;
@@ -42,6 +43,12 @@ public class ReservationsController {
                               @RequestParam LocalDate too){
         this.reservationService.create(guests,room,fromm,too);
         return "redirect:/listReservations";//da se smeni Strana so nov gost
+    }
+
+    @GetMapping("/reservation/add")
+    public String showAdd(Model model) {
+        model.addAttribute("types", AccommodationType.values());
+        return "editGuest";
     }
 
     @PostMapping("/reservation/{id}")

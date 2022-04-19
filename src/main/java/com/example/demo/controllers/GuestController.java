@@ -3,6 +3,8 @@ package com.example.demo.controllers;
 import com.example.demo.model.*;
 import com.example.demo.service.GuestService;
 import com.example.demo.service.impl.HtmlMailSenderService;
+import com.lowagie.text.DocumentException;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 @Controller
@@ -58,6 +65,24 @@ public class GuestController {
         model.addAttribute("types", AccommodationType.values());
         return "editGuest";
     }
+
+    @GetMapping("/guest/export/pdf")
+    public void exportToPDF(HttpServletResponse response) throws DocumentException, IOException {
+        response.setContentType("application/pdf");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=guests_" + currentDateTime + ".pdf";
+        response.setHeader(headerKey, headerValue);
+
+        List<Guests> listGuests = guestService.listAll();
+
+        GuestPDFExporter exporter = new GuestPDFExporter(listGuests);
+        exporter.export(response);
+
+    }
+
 
     @PostMapping("/guest/{id}")
     public String editGuest(@PathVariable Long id,

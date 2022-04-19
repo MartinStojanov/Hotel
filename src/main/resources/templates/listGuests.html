@@ -32,9 +32,12 @@
             max-width: 100%;
             overflow-x: hidden;
         }
-        #add-button{
-            text-align: center;
-        }
+        /*#add-button{*/
+        /*    text-align: center;*/
+        /*}*/
+        /*#export-button{*/
+        /*    text-align: center;*/
+        /*}*/
     </style>
 </head>
 
@@ -87,9 +90,20 @@
     </tbody>
 
 </table>
-<form id="add-button" th:action="@{'/guest/add'}" th:method="GET">
-    <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
-</form>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <form id="add-button" th:action="@{'/guest/add'}" th:method="GET">
+                <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
+            </form>
+        <div class="col">
+            <form id="export-button" th:action="@{'/guest/export/pdf'}" th:method="GET">
+                <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
+            </form>
+    </div>
+</div>
 
 </body>
 <script type="text/javascript">
