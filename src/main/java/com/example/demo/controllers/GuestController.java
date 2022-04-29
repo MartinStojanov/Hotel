@@ -97,7 +97,7 @@ public class GuestController {
     @GetMapping("/guest/{id}/send-email")
     public String sendEmail(@PathVariable Long id) throws MessagingException {
         Guests guest =  this.guestService.findById(id);
-        String subject = "subject Test";
+        String subject = "HOTEL INVOICE";
         String content = this.htmlMailSenderService.generateEmailContent(guest);
         this.htmlMailSenderService.triggerHtmlMail(guest.getEmail(),subject,content);
         return "redirect:/guests";
