@@ -55,7 +55,6 @@ public class EmployeesController {
     public String showEdit(@PathVariable Long id, Model model) {
         Employee emp = this.employeeService.findById(id);
 
-
         model.addAttribute("emp",emp);
         model.addAttribute("roles",Role.values());
 

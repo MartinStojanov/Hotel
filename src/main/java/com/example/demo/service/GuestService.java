@@ -12,14 +12,12 @@ public interface GuestService {
     List<Guests> listAll();
 
     Guests create(String name, String surname, String EMBG,
-                  String email, boolean breakfast,
-                  AccommodationType type,boolean paid);
+                  String email, boolean breakfast);
 
     Guests delete(Long id);
 
     Guests findById(Long id);
 
     Guests update(Long id,String name, String surname, String EMBG,
-                  String email, boolean breakfast,
-                  AccommodationType type, boolean paid);
+                  String email, boolean breakfast);
 }

@@ -72,16 +72,7 @@
                            th:value="${guest?.breakfast}"
                            required>
                 </div>
-                <h2>ACCOMODATION TYPE</h2>
-                <div>
-                    <select name="type">
-                        <option th:each="type:${types}"
-                                th:selected="${guest!=null ? guest.getType().toString().equals(type.toString()):null}"
-                                th:value="${type}"
-                                th:text="${type.name()}"> [type_name]
-                        </option>
-                    </select>
-                </div>
+
                 <button id="submit" type="submit">Submit</button>
                 <a id="back" href="/guests" type="button" class="btn btn-primary">Back to guest list</a>
             </div>

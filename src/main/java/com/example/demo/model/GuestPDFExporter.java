@@ -38,8 +38,8 @@ public class GuestPDFExporter {
         cell.setPhrase(new Phrase("Surname", font));
         table.addCell(cell);
 
-        cell.setPhrase(new Phrase("Type", font));
-        table.addCell(cell);
+//        cell.setPhrase(new Phrase("Type", font));
+//        table.addCell(cell);
 
         cell.setPhrase(new Phrase("Breakfast", font));
         table.addCell(cell);
@@ -54,7 +54,7 @@ public class GuestPDFExporter {
             table.addCell(guest.getEmail());
             table.addCell(guest.getName());
             table.addCell(guest.getSurname());
-            table.addCell(guest.getType().toString());
+
             table.addCell(String.valueOf(guest.isBreakfast()));
             table.addCell(String.valueOf(guest.getPrice()));
         }

@@ -44,7 +44,7 @@ public class GuestController {
         model.addAttribute("types", AccommodationType.values());
         model.addAttribute("guest",guest);
 
-        return "editGuest";
+        return "editGuest2";
     }
 
 
@@ -53,17 +53,15 @@ public class GuestController {
                               @RequestParam String surname,
                               @RequestParam String EMBG,
                               @RequestParam String email,
-                              @RequestParam boolean breakfast,
-                              @RequestParam AccommodationType type,
-                           @RequestParam boolean paid){
-        this.guestService.create(name,surname,EMBG,email,breakfast,type,paid);
+                              @RequestParam boolean breakfast){
+        this.guestService.create(name,surname,EMBG,email,breakfast);
         return "redirect:/guests";
     }
 
     @GetMapping("/guest/add")
     public String showAdd(Model model) {
         model.addAttribute("types", AccommodationType.values());
-        return "editGuest";
+        return "editGuest2";
     }
 
     @GetMapping("/guest/export/pdf")
@@ -90,10 +88,9 @@ public class GuestController {
                             @RequestParam String surname,
                             @RequestParam String EMBG,
                             @RequestParam String email,
-                            @RequestParam boolean breakfast,
-                            @RequestParam AccommodationType type,
-                            @RequestParam boolean paid){
-        this.guestService.update(id,name,surname,EMBG,email,breakfast,type,paid);
+                            @RequestParam boolean breakfast
+                            ){
+        this.guestService.update(id,name,surname,EMBG,email,breakfast);
         return "redirect:/guests";
 
     }
@@ -109,6 +106,23 @@ public class GuestController {
     public String delete(@PathVariable Long id) {
         this.guestService.delete(id);
         return "redirect:/guests";
+    }
+
+    @GetMapping("/guests/export/excel")
+    public void exportToExcel(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=guests_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<Guests> guestsList = this.guestService.listAll();
+
+        GuestExcelExporter excelExporter = new GuestExcelExporter(guestsList);
+
+        excelExporter.export(response);
     }
 
 }

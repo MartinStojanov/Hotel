@@ -4,6 +4,7 @@ import com.example.demo.model.AccommodationType;
 import com.example.demo.model.Guests;
 import com.example.demo.model.Reservations;
 import com.example.demo.model.Room;
+import com.example.demo.service.GuestService;
 import com.example.demo.service.ReservationService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,12 +19,14 @@ import java.util.List;
 @Controller
 public class ReservationsController {
     private final ReservationService reservationService;
+    private final GuestService guestService;
 
-    public ReservationsController(ReservationService reservationService) {
+    public ReservationsController(ReservationService reservationService, GuestService guestService) {
         this.reservationService = reservationService;
+        this.guestService = guestService;
     }
 
-    @GetMapping("/listReservations")
+    @GetMapping("/reservations")
     public String listReservations(Model model){
 
         List<Reservations> reservationsList = this.reservationService.listAll();
@@ -31,39 +34,37 @@ public class ReservationsController {
         return "listReservations";
     }
 
-    //eden Get Mapping so input forma za addReservation
-    //TODO:
-    //@GetMapping
 
 
-    @PostMapping("/addReservation")
-    public String addEmployee(@RequestParam Guests guests,
+    @PostMapping("/addReservations")
+    public String addReservation(@RequestParam Guests guests,
                               @RequestParam Room room,
                               @RequestParam LocalDate fromm,
                               @RequestParam LocalDate too){
         this.reservationService.create(guests,room,fromm,too);
-        return "redirect:/listReservations";//da se smeni Strana so nov gost
+        return "redirect:/reservations";
     }
 
-    @GetMapping("/reservation/add")
-    public String showAdd(Model model) {
+    @GetMapping("/reservation/{id}/add")
+    public String showAdd(Model model, @PathVariable Long id) {
         model.addAttribute("types", AccommodationType.values());
-        return "editGuest";
+        model.addAttribute("id", id);
+        return "addReservation";
     }
 
     @PostMapping("/reservation/{id}")
-    public String editGuest(@PathVariable Long id,
+    public String editReservation(@PathVariable Long id,
                             @RequestParam Guests guests,
                             @RequestParam Room room,
                             @RequestParam LocalDate fromm,
                             @RequestParam LocalDate too){
         this.reservationService.update(id,guests,room,fromm,too);
-        return "redirect:/reservations";//da se smeni Strana so updated rabotnik
+        return "redirect:/reservations";
 
     }
     @PostMapping("/reservation/{id}/delete")
     public String delete(@PathVariable Long id) {
         this.reservationService.delete(id);
-        return "redirect:/reservation"; // da se smeni strana so izbrisan rabotnik
+        return "redirect:/reservation";
     }
 }

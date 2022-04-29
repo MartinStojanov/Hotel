@@ -34,6 +34,6 @@ public class RoomController {
         model.addAttribute("employees",employeeList);
         model.addAttribute("numberFreeRooms",roomService.numberOfFreeRooms());
         model.addAttribute("numberBusyRooms", (long) roomService.listAll().size() - roomService.numberOfFreeRooms());
-        return "index";
+        return "form-template";
     }
 }

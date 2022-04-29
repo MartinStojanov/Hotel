@@ -16,28 +16,13 @@
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <style>
-        #leftt{
-
-            display: inline-block;
-            position: absolute;
-            margin-left: 60px;
-        }
-        #lef{
-
-            display: inline-block;
-            position: absolute;
-        }
         html, body {
             max-width: 100%;
             overflow-x: hidden;
         }
-        /*#add-button{*/
-        /*    text-align: center;*/
-        /*}*/
-        /*#export-button{*/
-        /*    text-align: center;*/
-        /*}*/
+
     </style>
 </head>
 
@@ -50,9 +35,7 @@
         <th>Guest First Name</th>
         <th>Guest Last Name</th>
         <th>Guest EMBG</th>
-        <th>Age</th>
         <th>Guest E-mail</th>
-        <th>Accomodation Type</th>
         <th>Breakfast</th>
         <th>Price</th>
         <th>Paid</th>
@@ -65,9 +48,7 @@
             <td th:text="${guest.name}">Garrett</td>
             <td th:text="${guest.surname}">Winters</td>
             <td th:text="${guest.EMBG}">Accountant</td>
-            <td>63</td>
             <td th:text="${guest.email}">$170,750</td>
-            <td th:text="${guest.type}">8422</td>
             <td th:text="${guest.breakfast}">$170,750</td>
             <td th:text="${guest.price}">g.winters@datatables.net</td>
             <td th:if="${guest.paid == false}"> <form th:action="@{'/guest/{id}/send-email/' (id=${guest.getId()})}" th:method="GET">
@@ -76,34 +57,46 @@
             <td th:unless="${guest.paid == false}"><form>
                 <button  type="submit" class="delete-item btn btn-success" disabled>Paid</button>
             </form></td>
-            <td>
+            <td class="col">
                 <form th:action="@{'/guest/{id}/edit/' (id=${guest.getId()})}" th:method="GET">
-                    <button  type="submit" class="delete-item btn btn-primary" id="lef"><i class="bi bi-pen"></i></button>
+                    <button  type="submit" class="delete-item btn btn-primary fa-pull-left"><i class="bi bi-pen"></i></button>
                 </form>
                 <form th:action="@{'/guest/{id}/delete' (id=${guest.getId()})}" th:method="POST">
-                    <button  type="submit" class="delete-item btn btn-danger " id="leftt"><i class="bi bi-trash"></i></button>
+                    <button  type="submit" class="delete-item btn btn-danger fa-pull-right"><i class="bi bi-trash"></i></button>
                 </form>
-
+                <form th:action="@{'/reservations/{id}/add' (id=${guest.getId()})}" th:method="POST">
+                    <button  type="submit" class="delete-item btn btn-warning align-center"><i class="bi bi-trash"></i></button>
+                </form>
             </td>
         </tr>
     </th:block>
     </tbody>
 
 </table>
+<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
 
-
+<form id="add-button" th:action="@{'/guest/add'}" th:method="GET">
+    <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
+</form>
 <div class="container">
     <div class="row">
-        <div class="col">
-            <form id="add-button" th:action="@{'/guest/add'}" th:method="GET">
-                <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
+        <div class="col-xs-11 col-sm-5 col-lg-5 center-block">
+            <form class="form-horizontal">
+                <div class="form-group">
+<!--                    <form id="add-button" th:action="@{'/guest/add'}" th:method="GET">-->
+<!--                        <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>-->
+<!--                    </form>-->
+                    <form id="export-button" th:action="@{'/guest/export/pdf'}" th:method="GET">
+                        <button  type="submit" class="delete-item btn btn-danger" ><i class="fa fa-file-pdf-o"></i></button>
+                    </form>
+
+                </div>
             </form>
-        <div class="col">
-            <form id="export-button" th:action="@{'/guest/export/pdf'}" th:method="GET">
-                <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
-            </form>
+        </div>
     </div>
 </div>
+
+
 
 </body>
 <script type="text/javascript">
@@ -114,6 +107,5 @@
 
         new $.fn.dataTable.FixedHeader( table );
     } );
-
 </script>
 </html>
