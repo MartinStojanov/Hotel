@@ -29,6 +29,7 @@ public class ProductController {
         return "listProducts";
     }
 
+
     @GetMapping("/product/add")
     public String showAdd() {
         return "editProduct";

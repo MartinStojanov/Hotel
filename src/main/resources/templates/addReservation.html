@@ -13,23 +13,42 @@
                     <div class="form-items">
                         <h3 style="margin-bottom: 5%; margin-top: 1%; text-align: center"  >Add/Edit Reservation</h3>
                         <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="fromm" id="fromm" placeholder="From Date" th:value="${res?.fromm}" required>
+                            <input type="date"
+                                   id="fromm"
+                                   name="fromm"
+                                   placeholder="From Date" th:value="${res?.fromm}"
+                                   required>
+                        </div>
+
+                        <div class="col-md-12" style="margin-right: 7%">
+                            <input class="form-control"
+                                    type="date"
+                                   id="too"
+                                   name="too"
+                                   placeholder="To Date" th:value="${res?.too}"
+                                   required>
+                        </div>
+
+
+                        <div class="col-md-12" style="margin-right: 7%">
+                            <select name="guests">
+                                <option th:each="guest:${guestsList}"
+
+                                        th:value="${guest.getId()}"
+                                        th:text="${guest.getName()}">
+                                </option>
+                            </select>
 
                         </div>
 
                         <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="too" id="too" placeholder="To Date" th:value="${res?.too}" required>
+                            <select name="room">
+                                <option th:each="room:${roomList}"
 
-                        </div>
-
-
-                        <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="guests" id="guests" placeholder="Guest" th:value="${res?.guests}" required>
-
-                        </div>
-
-                        <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="room" id="room" placeholder="Room" th:value="${res?.room}" required>
+                                        th:value="${room.getId()}"
+                                        th:text="${room.getNumber()} +' '+ ${room.getRoomType().toString()}">
+                                </option>
+                            </select>
 
                         </div>
 

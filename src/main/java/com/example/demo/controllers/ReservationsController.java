@@ -13,7 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class ReservationsController {
@@ -40,17 +42,36 @@ public class ReservationsController {
 
 
     @PostMapping("/reservation")
-    public String addReservation(@RequestParam Guests guests,
-                              @RequestParam Room room,
-                              @RequestParam String fromm,
-                              @RequestParam String too){
-        this.reservationService.create(guests,room,fromm,too);
+    public String addReservation( @RequestParam Long guests,
+                                  @RequestParam Long room,
+                                  @RequestParam String fromm,
+                                  @RequestParam String too){
+        this.reservationService.create(this.guestService.findById(guests),
+                this.roomService.findById(room),fromm,too);
         return "redirect:/reservations";
     }
 
     @GetMapping("/reservation/add")
     public String showAdd(Model model) {
         model.addAttribute("types", AccommodationType.values());
+
+            List<Guests> guestsList = this.guestService.listAll();
+            model.addAttribute("guestsList",guestsList);
+        List<Room> roomList = this.roomService.listAll().stream().filter(x->x.getFree()).collect(Collectors.toList());
+
+        model.addAttribute("roomList",roomList);
+        return "addReservation";
+    }
+    @GetMapping("/reservation/add/{id}")
+    public String showAddd(Model model, @PathVariable Long id) {
+        model.addAttribute("types", AccommodationType.values());
+        List<Guests> guestsList = new ArrayList<>();
+            Guests guest = this.guestService.findById(id);
+            guestsList.add(guest);
+            model.addAttribute("guestsList",guestsList);
+        List<Room> roomList = this.roomService.listAll().stream().filter(x->x.getFree()).collect(Collectors.toList());
+
+        model.addAttribute("roomList",roomList);
         return "addReservation";
     }
 
@@ -66,11 +87,12 @@ public class ReservationsController {
 
     @PostMapping("/reservation/{id}")
     public String update(@PathVariable Long id,
-                            @RequestParam Guests guests,
-                            @RequestParam Room room,
+                            @RequestParam Long guests,
+                            @RequestParam Long room,
                             @RequestParam String fromm,
                             @RequestParam String too){
-        this.reservationService.update(id,guests,room, fromm, too);
+        this.reservationService.update(id,this.guestService.findById(guests),
+                this.roomService.findById(room), fromm, too);
         return "redirect:/reservations";
 
     }
