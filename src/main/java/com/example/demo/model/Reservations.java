@@ -3,10 +3,11 @@ package com.example.demo.model;
 import lombok.Data;
 import org.hibernate.annotations.OnDelete;
 import org.hibernate.annotations.OnDeleteAction;
-import org.hibernate.engine.internal.Cascade;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
+
 @Data
 @Entity
 public class Reservations {
@@ -19,18 +20,19 @@ public class Reservations {
         @OnDelete(action = OnDeleteAction.CASCADE)
         @OneToOne
         private Room room;
-        private LocalDate fromm;
-        private LocalDate too;
+        private String fromm;
+        private String too;
 
         public Reservations() {
         }
 
-        public Reservations(Guests guests, Room room, LocalDate from, LocalDate to) {
+        public Reservations(Guests guests, Room room, String from, String to) {
             this.guests = guests;
             this.room = room;
             this.fromm = from;
             this.too = to;
         }
+
     }
 
 

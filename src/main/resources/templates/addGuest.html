@@ -5,32 +5,35 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{'/reservation/{id}' (id=${res?.id})}">
+<form th:method="POST" th:action="@{'/guest/{id}' (id=${guest?.id})}">
     <div class="form-body">
         <div class="row">
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3 style="margin-bottom: 5%; margin-top: 1%; text-align: center"  >Add/Edit Reservation</h3>
+                        <h3 style="margin-bottom: 5%; margin-top: 1%; text-align: center"  >Add/Edit Guest</h3>
                         <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="fromm" id="fromm" placeholder="From Date" th:value="${res?.fromm}" required>
+                            <input class="form-control" type="text" name="name" id="name" placeholder="Name" th:value="${guest?.name}" required>
 
                         </div>
 
                         <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="too" id="too" placeholder="To Date" th:value="${res?.too}" required>
-
-                        </div>
-
-
-                        <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="guests" id="guests" placeholder="Guest" th:value="${res?.guests}" required>
+                            <input class="form-control" type="text" name="surname" id="surname" placeholder="Surname" th:value="${guest?.surname}" required>
 
                         </div>
 
                         <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="room" id="room" placeholder="Room" th:value="${res?.room}" required>
+                            <input class="form-control" type="text" name="EMBG" id="EMBG" placeholder="EMBG" th:value="${guest?.EMBG}" required>
 
+                        </div>
+
+                        <div class="col-md-12" style="margin-right: 7%">
+                            <input class="form-control" type="text" name="email" id="email" placeholder="E-mail Address" th:value="${guest?.email}" required>
+
+                        </div>
+
+                        <div class="col-md-12" style="margin-right: 7%">
+                            <input class="form-control" type="text" name="breakfast" id="breakfast" placeholder="breakfast" th:value="${guest?.breakfast}" required>
                         </div>
 
                         <button id="submit" type="submit">Submit</button>

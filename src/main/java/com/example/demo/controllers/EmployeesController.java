@@ -3,17 +3,13 @@ package com.example.demo.controllers;
 import com.example.demo.model.Employee;
 import com.example.demo.model.Role;
 import com.example.demo.service.EmployeeService;
-import org.springframework.context.annotation.Bean;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.thymeleaf.templatemode.TemplateMode;
-import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -41,7 +37,7 @@ public class EmployeesController {
                               @RequestParam float salary,
                               @RequestParam Role position){
         this.employeeService.create(name,surname,EMBG,email,salary,position);
-        return "redirect:/employees";//da se smeni Strana so nov vraboten
+        return "redirect:/employees";
     }
 
     @GetMapping("/employee/add")

@@ -8,6 +8,7 @@ import com.example.demo.service.ReservationService;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -24,7 +25,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Reservations create(Guests guests, Room room, LocalDate from, LocalDate to) {
+    public Reservations create(Guests guests, Room room, String from, String to) {
         Reservations reservations = new Reservations(guests,room,from,to);
         return this.reservationRepo.save(reservations);
     }
@@ -42,7 +43,7 @@ public class ReservationServiceImpl implements ReservationService {
     }
 
     @Override
-    public Reservations update(Long id, Guests guests, Room room, LocalDate from, LocalDate to) {
+    public Reservations update(Long id, Guests guests, Room room, String from, String to) {
         Reservations reservations = findById(id);
         reservations.setGuests(guests);
         reservations.setRoom(room);

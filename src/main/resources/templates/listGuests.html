@@ -65,7 +65,7 @@
                     <button  type="submit" class="delete-item btn btn-danger fa-pull-right"><i class="bi bi-trash"></i></button>
                 </form>
                 <form th:action="@{'/reservations/{id}/add' (id=${guest.getId()})}" th:method="POST">
-                    <button  type="submit" class="delete-item btn btn-warning align-center"><i class="bi bi-trash"></i></button>
+                    <button  type="submit" class="btn btn-warning align-center"><i class="fa fa-hotel"></i></button>
                 </form>
             </td>
         </tr>
@@ -75,28 +75,30 @@
 </table>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
 
-<form id="add-button" th:action="@{'/guest/add'}" th:method="GET">
-    <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
-</form>
 <div class="container">
-    <div class="row">
-        <div class="col-xs-11 col-sm-5 col-lg-5 center-block">
-            <form class="form-horizontal">
-                <div class="form-group">
-<!--                    <form id="add-button" th:action="@{'/guest/add'}" th:method="GET">-->
-<!--                        <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>-->
-<!--                    </form>-->
-                    <form id="export-button" th:action="@{'/guest/export/pdf'}" th:method="GET">
-                        <button  type="submit" class="delete-item btn btn-danger" ><i class="fa fa-file-pdf-o"></i></button>
+
+<div class="row">
+
+    <div class="col">
+                    <form id="add-button" th:action="@{'/guest/add'}" th:method="GET" >
+                        <button  type="submit" class="btn btn-success" ><i class="bi bi-person-plus"></i></button>
                     </form>
-
-                </div>
-            </form>
         </div>
+
+    <div class="col">
+                <form id="export-pdf" th:action="@{'/guest/export/pdf'}" th:method="GET">
+                    <button  type="submit" class="btn btn-danger" ><i class="fa fa-file-pdf-o"></i></button>
+                </form>
     </div>
-</div>
+    <div class="col">
+                <form id="export-excel" th:action="@{'/guests/export/excel'}" th:method="GET">
+                    <button  type="submit" class="btn btn-danger" ><i class="fa fa-file-excel-o"></i></button>
+                </form>
+        </div>
 
+        </div>
 
+    </div>
 
 </body>
 <script type="text/javascript">
@@ -108,4 +110,12 @@
         new $.fn.dataTable.FixedHeader( table );
     } );
 </script>
+<style>
+    #add-button{
+        display: table-row;
+    }
+    #export-pdf{
+        display: table-row;
+    }
+</style>
 </html>

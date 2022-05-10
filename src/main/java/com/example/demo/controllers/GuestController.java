@@ -4,7 +4,6 @@ import com.example.demo.model.*;
 import com.example.demo.service.GuestService;
 import com.example.demo.service.impl.HtmlMailSenderService;
 import com.lowagie.text.DocumentException;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -41,10 +40,8 @@ public class GuestController {
     @GetMapping("/guest/{id}/edit")
     public String showEdit(@PathVariable Long id, Model model) {
         Guests guest = this.guestService.findById(id);
-        model.addAttribute("types", AccommodationType.values());
         model.addAttribute("guest",guest);
-
-        return "editGuest2";
+        return "addGuest";
     }
 
 
@@ -60,8 +57,7 @@ public class GuestController {
 
     @GetMapping("/guest/add")
     public String showAdd(Model model) {
-        model.addAttribute("types", AccommodationType.values());
-        return "editGuest2";
+        return "addGuest";
     }
 
     @GetMapping("/guest/export/pdf")

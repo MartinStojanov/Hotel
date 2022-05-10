@@ -26,7 +26,6 @@ public class GuestPDFExporter {
         font.setColor(Color.WHITE);
 
         cell.setPhrase(new Phrase("Guest ID", font));
-
         table.addCell(cell);
 
         cell.setPhrase(new Phrase("E-mail", font));
@@ -37,9 +36,6 @@ public class GuestPDFExporter {
 
         cell.setPhrase(new Phrase("Surname", font));
         table.addCell(cell);
-
-//        cell.setPhrase(new Phrase("Type", font));
-//        table.addCell(cell);
 
         cell.setPhrase(new Phrase("Breakfast", font));
         table.addCell(cell);
@@ -74,9 +70,9 @@ public class GuestPDFExporter {
 
         document.add(p);
 
-        PdfPTable table = new PdfPTable(7);
+        PdfPTable table = new PdfPTable(6);
         table.setWidthPercentage(100f);
-        table.setWidths(new float[] {1.0f, 3.5f, 3.0f, 3.0f, 3.0f, 1.5f, 2.0f});
+        table.setWidths(new float[] {1.0f, 3.5f, 3.0f, 3.0f, 3.0f, 1.5f});
         table.setSpacingBefore(10);
 
         writeTableHeader(table);

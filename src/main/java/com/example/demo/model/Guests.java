@@ -24,14 +24,15 @@ public class Guests {
 
     public Guests(String name, String surname, String EMBG,
                   String email, boolean breakfast,
-                  boolean paid) {
+                  boolean paid,
+                  float price) {
         this.name = name;
         this.surname = surname;
         this.EMBG = EMBG;
         this.email = email;
         this.breakfast = breakfast;
-
         this.paid = paid;
+        this.price=price;
     }
 
     public Guests(String name, String surname, String EMBG,

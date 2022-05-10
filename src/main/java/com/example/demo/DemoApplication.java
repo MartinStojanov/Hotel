@@ -7,7 +7,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.ApplicationEvent;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.event.EventListener;
+
 
 import javax.mail.*;
 import javax.mail.internet.InternetAddress;
@@ -17,17 +19,15 @@ import java.util.Properties;
 @SpringBootApplication
 public class DemoApplication {
 
-//    @Autowired
-//    private EmailSenderService emailSenderService;
 
     public static void main(String[] args) throws MessagingException {
         SpringApplication.run(DemoApplication.class, args);
-
-
-
     }
-//    emailSenderService.sendSimpleEmail("nikolastojancevski@yahoo.com","<html><h1>PEDERISTE</h1>" +
-//                "<h2 >OD BELIMBEGOVO</h2></html>" ,"Peder2");
+
+//    @Bean
+//    public PasswordEncoder passwordEncoder() {
+//        return new BCryptPasswordEncoder();
 //    }
+
 
 }

@@ -60,30 +60,26 @@
 
     <thead>
     <tr>
-        <th>Reservation ID</th>
-        <th>Reservation From</th>
-        <th>Reservation To</th>
-        <th>Guest Name</th>
-        <th>Reservation Room Type</th>
+        <th>RoomNumber</th>
+        <th>Is Free</th>
+        <th>Room Type</th>
         <th>Action</th>
     </tr>
     </thead>
     <tbody>
-    <th:block th:each="reservation : ${reservationsList}">
+    <th:block th:each="room : ${roomList}">
         <tr>
-            <td th:text="${reservation.id}"></td>
-            <td th:text="${reservation.fromm}"></td>
-            <td th:text="${reservation.too}"></td>
-            <td th:text="${reservation.guests.name +  reservation.guests.surname}"></td>
-            <td th:text="${reservation.room.roomType}"></td>
+            <td th:text="${room.getNumber()}"></td>
+            <td th:text="${room.getFree()}"></td>
+            <td th:text="${room.roomType}"></td>
             <td>
                 <div class="btn-group">
-                    <form th:action="@{'/reservation/{id}/edit/' (id=${reservation.getId()})}" th:method="GET">
+                    <form th:action="@{'/room/{id}/edit/' (id=${room.getId()})}" th:method="GET">
                         <button  type="submit" class="delete-item btn btn-primary"><i class="bi bi-pen"></i></button>
                     </form>
                 </div>
                 <div class="btn-group">
-                    <form th:action="@{'/reservation/{id}/delete' (id=${reservation.getId()})}" th:method="POST">
+                    <form th:action="@{'/room/{id}/delete' (id=${room.getId()})}" th:method="POST">
                         <button  type="submit" class="delete-item btn btn-danger "><i class="bi bi-trash"></i></button>
                     </form>
                 </div>
@@ -93,7 +89,7 @@
     </tbody>
 
 </table>
-<form id="add-button" th:action="@{'/reservation/add'}" th:method="GET">
+<form id="add-button" th:action="@{'/room/add'}" th:method="GET">
     <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
 </form>
 

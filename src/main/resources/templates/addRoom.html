@@ -5,32 +5,31 @@
 </head>
 <body>
 
-<form th:method="POST" th:action="@{'/reservation/{id}' (id=${res?.id})}">
+<form th:method="POST" th:action="@{'/room/{id}' (id=${room?.id})}">
     <div class="form-body">
         <div class="row">
             <div class="form-holder">
                 <div class="form-content">
                     <div class="form-items">
-                        <h3 style="margin-bottom: 5%; margin-top: 1%; text-align: center"  >Add/Edit Reservation</h3>
+                        <h3 style="margin-bottom: 5%; margin-top: 1%; text-align: center"  >Add/Edit Employee</h3>
                         <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="fromm" id="fromm" placeholder="From Date" th:value="${res?.fromm}" required>
+                            <input class="form-control" type="text" name="number" id="number" placeholder="Room Number" th:value="${room?.number}" required>
 
                         </div>
 
                         <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="too" id="too" placeholder="To Date" th:value="${res?.too}" required>
+                            <input class="form-control" type="text" name="free" id="free" placeholder="Is Free" th:value="${room?.free}" required>
 
                         </div>
 
-
-                        <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="guests" id="guests" placeholder="Guest" th:value="${res?.guests}" required>
-
-                        </div>
-
-                        <div class="col-md-12" style="margin-right: 7%">
-                            <input class="form-control" type="text" name="room" id="room" placeholder="Room" th:value="${res?.room}" required>
-
+                        <div class="col-md-12" >
+                            <select class="form-select mt-3" name="type" required >
+                                <option th:each="type:${types}"
+                                        th:selected="${room!=null ? room.getRoomType().toString().equals(type.toString()):null}"
+                                        th:value="${type}"
+                                        th:text="${type.name()}"> [type_name]
+                                </option>
+                            </select>
                         </div>
 
                         <button id="submit" type="submit">Submit</button>
