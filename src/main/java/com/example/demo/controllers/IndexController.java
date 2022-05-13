@@ -26,7 +26,7 @@ public class IndexController {
         this.roomService = roomService;
     }
 
-    @GetMapping("/index")
+    @GetMapping({"/index","/"})
     public String getInfo(Model model) {
 
         List<Guests> guestsList = this.guestService.listAll();

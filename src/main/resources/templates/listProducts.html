@@ -16,17 +16,6 @@
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
     <style>
-        #leftt{
-
-            display: inline;
-            position: absolute;
-            margin-left: 60px;
-        }
-        #lef{
-
-            display: inline;
-            position: absolute;
-        }
         html, body {
             max-width: 100%;
             overflow-x: hidden;
@@ -94,13 +83,24 @@
 
 </table>
 
-<div sec:authorize="hasAnyAuthority('ROLE_director', 'ROLE_manager', 'ROLE_chef', 'ROLE_cleaner')">
-<form id="add-button" th:action="@{'/product/add'}" th:method="GET">
-    <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
-</form>
-</div>
+<div class="container" sec:authorize="hasAnyAuthority('ROLE_director', 'ROLE_chef', 'ROLE_cleaner')">
 
+    <div class="row" style="text-align: center">
+
+    <div class="btn-group" style="text-align: center">
+        <form id="add-button" th:action="@{'/product/add'}" th:method="GET">
+        <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
+        </form>
+    </div>
+
+    <div class="btn-group" style="text-align: center">
+        <a id="back" href="/index" type="button" class="btn btn-info"><i class="bi bi-house"></i></a>
+    </div>
+
+    </div>
+</div>
 </body>
+
 <script type="text/javascript">
     $(document).ready(function() {
         var table = $('#example').DataTable( {

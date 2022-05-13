@@ -1,19 +1,19 @@
 package com.example.demo.controllers;
 
 import com.example.demo.model.*;
+import com.example.demo.repository.GuestRepo;
 import com.example.demo.service.GuestService;
 import com.example.demo.service.impl.HtmlMailSenderService;
 import com.lowagie.text.DocumentException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.InputStream;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -24,10 +24,12 @@ public class GuestController {
 
     private final GuestService guestService;
     private final HtmlMailSenderService htmlMailSenderService;
+    private final GuestRepo guestRepo;
 
-    public GuestController(GuestService guestService, HtmlMailSenderService htmlMailSenderService) {
+    public GuestController(GuestService guestService, HtmlMailSenderService htmlMailSenderService, GuestRepo guestRepo) {
         this.guestService = guestService;
         this.htmlMailSenderService = htmlMailSenderService;
+        this.guestRepo = guestRepo;
     }
 
     @GetMapping("/guests")
@@ -119,6 +121,24 @@ public class GuestController {
         GuestExcelExporter excelExporter = new GuestExcelExporter(guestsList);
 
         excelExporter.export(response);
+    }
+
+    @GetMapping("/uploadPageGuest")
+    public String getUploadGuest(){
+        return "uploadCSVGuest";
+    }
+
+    @PostMapping(value = "/uploadGuest", consumes = "text/csv")
+    public String uploadSimpleGuest(@RequestBody InputStream body) throws IOException {
+        guestRepo.saveAll(CsvUtils.read(Guests.class, body));
+
+        return "redirect:/guests";
+    }
+
+    @PostMapping(value = "/uploadGuest", consumes = "multipart/form-data")
+    public String uploadMultipartGuest(@RequestParam("file") MultipartFile file) throws IOException {
+        guestRepo.saveAll(CsvUtils.read(Guests.class, file.getInputStream()));
+        return "redirect:/guests";
     }
 
 }

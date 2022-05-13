@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Upload File For Products</title>
+</head>
+<body>
+
+
+<div style="color: #0A2558; size: 20px; text-align: center"> <b>CHOOSE YOUR CSV FILE FOR IMPORT</b></div>
+
+<div style="text-align: center; margin-top: 100px">
+
+    <form th:action="@{'/uploadProduct'} " th:method="POST" enctype="multipart/form-data">
+        <input type="file" name="file" id="file" />
+        <input type="submit" name="submit" value="Submit" />
+    </form>
+
+</div>
+</body>
+</html>

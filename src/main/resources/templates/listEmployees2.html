@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/1.11.4/css/dataTables.bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/fixedheader/3.2.1/css/fixedHeader.bootstrap.min.css">
     <link rel="stylesheet" href="hxttps://cdn.datatables.net/responsive/2.2.9/css/responsive.bootstrap.min.css">
@@ -15,26 +15,32 @@
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/dataTables.responsive.min.js"></script>
     <script src="https://cdn.datatables.net/responsive/2.2.9/js/responsive.bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
-<style>
-    #leftt{
+    <style>
+        html, body {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        #add-button{
+            text-align: center;
+        }
 
-        display: inline-block;
-        position: absolute;
-        margin-left: 60px;
-    }
-    #lef{
+        .btn-group button {
+            color: white; /* White text */
+            float: left; /* Float the buttons side by side */
+        }
 
-        display: inline-block;
-        position: absolute;
-    }
-    html, body {
-        max-width: 100%;
-        overflow-x: hidden;
-    }
-    #add-button{
-        text-align: center;
-    }
-</style>
+        /* Clear floats (clearfix hack) */
+        .btn-group:after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+
+        .btn-group button:not(:last-child) {
+            border-right: none; /* Prevent double borders */
+        }
+
+    </style>
 </head>
 
 <body>
@@ -46,8 +52,6 @@
         <th>First name</th>
         <th>Last name</th>
         <th>Position</th>
-        <th>Age</th>
-        <th>Start date</th>
         <th>Salary</th>
         <th>EMBG</th>
         <th>E-mail</th>
@@ -60,28 +64,43 @@
         <td th:text="${emp.name}">Garrett</td>
         <td th:text="${emp.surname}">Winters</td>
         <td th:text="${emp.position}">Accountant</td>
-        <td>63</td>
-        <td>2011/07/25</td>
         <td th:text="${emp.salary}">$170,750</td>
         <td th:text="${emp.EMBG}">8422</td>
         <td th:text="${emp.email}">g.winters@datatables.net</td>
         <td>
-            <form th:action="@{'/employee/{id}/edit/' (id=${emp.getId()})}" th:method="GET">
-                <button  type="submit" class="delete-item btn btn-primary" id="lef"><i class="bi bi-pen"></i></button>
-            </form>
-            <form th:action="@{'/employee/{id}/delete' (id=${emp.getId()})}" th:method="POST">
-                <button  type="submit" class="delete-item btn btn-danger " id="leftt"><i class="bi bi-trash"></i></button>
-            </form>
-
+            <div class="btn-group">
+                <form th:action="@{'/employee/{id}/edit/' (id=${emp.getId()})}" th:method="GET">
+                    <button  type="submit" class="delete-item btn btn-primary"><i class="bi bi-pen"></i></button>
+                </form>
+            </div>
+            <div class="btn-group">
+                <form th:action="@{'/employee/{id}/delete' (id=${emp.getId()})}" th:method="POST">
+                    <button  type="submit" class="delete-item btn btn-danger "><i class="bi bi-trash"></i></button>
+                </form>
+            </div>
         </td>
     </tr>
     </th:block>
     </tbody>
 
 </table>
-<form id="add-button" th:action="@{'/employee/add'}" th:method="GET">
-    <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
-</form>
+<div class="container" sec:authorize="hasAnyAuthority('ROLE_director', 'ROLE_chef')">
+
+    <div class="row" style="text-align: center">
+
+        <div class="btn-group">
+        <form id="add-button" th:action="@{'/employee/add'}" th:method="GET">
+            <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
+        </form>
+        </div>
+
+        <div class="btn-group">
+            <a id="back" href="/index" type="button" class="btn btn-info"><i class="bi bi-house"></i></a>
+        </div>
+
+    </div>
+</div>
+
 
 </body>
 <script type="text/javascript">

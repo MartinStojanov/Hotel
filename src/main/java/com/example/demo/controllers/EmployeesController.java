@@ -80,9 +80,9 @@ public class EmployeesController {
         return "redirect:/employees"; // da se smeni strana so izbrisan rabotnik
     }
 
-    @GetMapping("/uploadPage")
-    public String getUploadPage(){
-        return "uploadPage";
+    @GetMapping("/uploadPageEmployee")
+    public String getUploadGuest(){
+        return "uploadCSVEmployee";
     }
 
     @PostMapping(value = "/upload", consumes = "text/csv")
