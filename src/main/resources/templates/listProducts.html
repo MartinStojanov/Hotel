@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml" >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -93,9 +93,12 @@
     </tbody>
 
 </table>
+
+<div sec:authorize="hasAnyAuthority('ROLE_director', 'ROLE_manager', 'ROLE_chef', 'ROLE_cleaner')">
 <form id="add-button" th:action="@{'/product/add'}" th:method="GET">
     <button  type="submit" class="delete-item btn btn-success" ><i class="bi bi-person-plus"></i></button>
 </form>
+</div>
 
 </body>
 <script type="text/javascript">

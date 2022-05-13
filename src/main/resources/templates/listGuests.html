@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<html lang="en" xmlns:th="http://www.thymeleaf.org" >
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -75,30 +75,35 @@
 </table>
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" rel="stylesheet"/>
 
-<div class="container">
+<div class="container" sec:authorize="hasAnyAuthority('ROLE_director', 'ROLE_manager', 'ROLE_reception')">
 
 <div class="row">
 
-    <div class="col">
+
+        <div class="col">
                     <form id="add-button" th:action="@{'/guest/add'}" th:method="GET" >
                         <button  type="submit" class="btn btn-success" ><i class="bi bi-person-plus"></i></button>
                     </form>
         </div>
+
 
     <div class="col">
                 <form id="export-pdf" th:action="@{'/guest/export/pdf'}" th:method="GET">
                     <button  type="submit" class="btn btn-danger" ><i class="fa fa-file-pdf-o"></i></button>
                 </form>
     </div>
+
     <div class="col">
                 <form id="export-excel" th:action="@{'/guests/export/excel'}" th:method="GET">
                     <button  type="submit" class="btn btn-danger" ><i class="fa fa-file-excel-o"></i></button>
                 </form>
-        </div>
+    </div>
+
 
         </div>
 
     </div>
+
 
 </body>
 <script type="text/javascript">
