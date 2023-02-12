@@ -28,8 +28,8 @@ public class HtmlMailSenderService {
         props.setProperty("mail.debug", "true");
 
 
-//        String to = "nikolastojancevski@yahoo.com";
-        final String from = "bane.taskovic@gmail.com";
+
+        final String from = "martin.stojanov@gmail.com";
         final String password = "juatixngbmidmvic";
 
         Session session = Session.getDefaultInstance(props,
@@ -43,7 +43,7 @@ public class HtmlMailSenderService {
 
         MimeMessage message = new MimeMessage(session);
         message.setSubject(subject);
-        message.setFrom(new InternetAddress("bane.taskovic@gmail.com"));
+        message.setFrom(new InternetAddress("martin.stojanov@gmail.com"));
         message.setContent(content, "text/html");
         message.addRecipient(Message.RecipientType.TO,
                 new InternetAddress(emailTo));
